@@ -3,7 +3,7 @@
     <h2>Sign up</h2>
     <input type="text" placeholder="Email" v-model="email">
     <input type="password" placeholder="Password" v-model="password">
-    <button>Register</button>
+    <button @click="signUp">Register</button>
     <p>
       Do you have an account?
       <router-link to="/singin">sign in now</router-link>
@@ -12,12 +12,22 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   name: 'Signup',
-  data () {
+  data: function () {
     return {
       email: '',
       password: ''
+    }
+  },
+  methods: {
+    signUp: function () {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res => {
+        console.log('Create account: ', res.user.email)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
 }
