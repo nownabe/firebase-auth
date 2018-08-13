@@ -11,17 +11,17 @@
 import axios from 'axios'
 export default {
   name: 'HelloWorld',
-  data() {
+  data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   methods: {
-    apiPublic: async function() {
+    apiPublic: async function () {
       let res = await axios.get('http://localhost:8000/public')
       this.msg = res.data
     },
-    apiPrivate: async function() {
+    apiPrivate: async function () {
       let res = await axios.get('http://localhost:8000/private')
       this.msg = res.data
     }
